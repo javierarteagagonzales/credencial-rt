@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { ArrowRight, ShieldCheck, Share2, Download } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const settings = await prisma.eventSettings.findFirst() || {
     eventName: "Nebula Tech Conf",

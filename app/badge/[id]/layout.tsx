@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await props.params;
     const [credential, settings] = await Promise.all([
