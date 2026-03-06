@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Credential {
+  id           String   @id @default(uuid())
+  customId     String   @unique
+  name         String
+  photoUrl     String
+  createdAt    DateTime @default(now())
+}
+
+model EventSettings {
+  id               Int      @id @default(1)
+  eventName        String   @default("NEBULA TECH CONF")
+  eventYear        String   @default("2026")
+  eventLogoUrl     String   @default("/logo.png")
+  shareMessage     String   @default("I'm attending Nebula Tech Conf 2026! Check out my digital badge:")
+  shareHashtags    String   @default("Nebula2026,TechConf")
+  primaryColor     String   @default("#00f2ff")
+  secondaryColor   String   @default("#7000ff")
+  adminPassword    String   @default("admin123")
+}

@@ -1,0 +1,197 @@
+.badgeContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.badgeCard {
+    width: 100%;
+    max-width: 350px;
+    min-height: 500px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.glow1 {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.glow2 {
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(112, 0, 255, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    object-fit: contain;
+}
+
+.eventInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.eventName {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.eventYear {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.photoWrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #0f0f0f;
+}
+
+.userDetails {
+    margin-top: 10px;
+}
+
+.userName {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.role {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #888;
+    font-weight: 600;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.idInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.idLabel {
+    font-size: 0.6rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.idValue {
+    font-family: var(--font-geist-mono);
+    font-size: 0.75rem;
+    color: #ccc;
+}
+
+.qrWrapper {
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qrCode {
+    width: 70px;
+    height: 70px;
+}
+
+.statusLine {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 242, 255, 0.1);
+    padding: 5px 0;
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+@media (max-width: 480px) {
+    .badgeCard {
+        padding: 20px;
+        min-height: 450px;
+    }
+
+    .userName {
+        font-size: 1.4rem;
+    }
+
+    .photoWrapper {
+        width: 120px;
+        height: 120px;
+    }
+}
