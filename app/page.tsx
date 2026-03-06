@@ -5,7 +5,16 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const settings = await prisma.eventSettings.findFirst() || {
+  let settings;
+
+  try {
+    settings = await prisma.eventSettings.findFirst();
+  } catch (error) {
+    console.error("Database not ready yet:", error);
+    settings = null;
+  }
+
+  const activeSettings = settings || {
     eventName: "Nebula Tech Conf",
     eventYear: "2026",
     shareMessage: "Join the most advanced tech conference of the decade. Generate your digital credential and join the nebula.",
@@ -19,17 +28,17 @@ export default async function Home() {
         <h1 style={{
           fontSize: '4rem',
           marginBottom: '1.5rem',
-          background: `linear-gradient(to right, ${settings.primaryColor}, ${settings.secondaryColor})`,
+          background: `linear-gradient(to right, ${activeSettings.primaryColor}, ${activeSettings.secondaryColor})`,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>
-          {settings.eventName} {settings.eventYear}
+          {activeSettings.eventName} {activeSettings.eventYear}
         </h1>
         <p style={{ fontSize: '1.2rem', color: '#888', maxWidth: '600px', margin: '0 auto 2rem' }}>
-          {settings.shareMessage}
+          {activeSettings.shareMessage}
         </p>
         <Link href="/generate" className="btn-primary" style={{
-          background: `linear-gradient(135deg, ${settings.primaryColor}, ${settings.secondaryColor})`
+          background: `linear-gradient(135deg, ${activeSettings.primaryColor}, ${activeSettings.secondaryColor})`
         }}>
           Generate My Badge <ArrowRight size={20} />
         </Link>
@@ -37,12 +46,12 @@ export default async function Home() {
 
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', padding: '4rem 0' }}>
         <div className="glass-card">
-          <ShieldCheck size={32} color={settings.primaryColor} style={{ marginBottom: '1rem' }} />
+          <ShieldCheck size={32} color={activeSettings.primaryColor} style={{ marginBottom: '1rem' }} />
           <h3>Verified Entry</h3>
           <p style={{ color: '#888', marginTop: '0.5rem' }}>Secure QR-based verification system for all attendees.</p>
         </div>
         <div className="glass-card">
-          <Download size={32} color={settings.secondaryColor} style={{ marginBottom: '1rem' }} />
+          <Download size={32} color={activeSettings.secondaryColor} style={{ marginBottom: '1rem' }} />
           <h3>Downloadable</h3>
           <p style={{ color: '#888', marginTop: '0.5rem' }}>Get a high-resolution PNG of your digital badge.</p>
         </div>
@@ -54,7 +63,7 @@ export default async function Home() {
       </section>
 
       <footer style={{ padding: '4rem 0', textAlign: 'center', color: '#444', borderTop: '1px solid #111' }}>
-        <p>&copy; {settings.eventYear} {settings.eventName}. All rights reserved.</p>
+        <p>&copy; {activeSettings.eventYear} {activeSettings.eventName}. All rights reserved.</p>
         <Link href="/admin" style={{ fontSize: '0.8rem', marginTop: '1rem', display: 'inline-block' }}>Admin Dashboard</Link>
       </footer>
     </main>
