@@ -8,7 +8,7 @@ import Link from 'next/link';
 import QRCode from 'qrcode';
 import { toPng } from 'html-to-image';
 
-export default function BadgePage() {
+export default function BadgePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = useParams();
     const [credential, setCredential] = useState<any>(null);
     const [settings, setSettings] = useState<any>(null);

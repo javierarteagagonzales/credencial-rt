@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { ShieldCheck, XCircle, Clock, User, Fingerprint } from 'lucide-react';
 import Link from 'next/link';
 
-export default function VerifyPage() {
+export default function VerifyPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = useParams();
     const [credential, setCredential] = useState<any>(null);
     const [loading, setLoading] = useState(true);

@@ -1,13 +1,8 @@
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
 
-interface Props {
-    params: { id: string };
-    children: React.ReactNode;
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-    const { id } = await params;
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const { id } = await props.params;
     const [credential, settings] = await Promise.all([
         prisma.credential.findUnique({ where: { customId: id } }),
         prisma.eventSettings.findFirst()
@@ -42,6 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
 }
 
-export default function BadgeLayout({ children }: Props) {
-    return <>{children}</>;
+export default async function BadgeLayout(props: {
+    children: React.ReactNode;
+    params: Promise<{ id: string }>;
+}) {
+    return <>{props.children}</>;
 }
